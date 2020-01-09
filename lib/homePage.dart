@@ -8,17 +8,63 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  num result = 0;
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text("Calculator"),
+        elevation: 0.0,
+        title: Row(
+          children: <Widget>[
+            Expanded(
+              child: Icon(
+                Icons.compare_arrows,
+                color: Colors.orange,
+              ),
+            ),
+            Expanded(
+              child: Icon(
+                Icons.add_box,
+                color: Colors.orange,
+              ),
+            ),
+            Expanded(
+              child: Icon(
+                Icons.gamepad,
+                color: Colors.orange,
+              ),
+            ),
+            Expanded(
+              child: Icon(
+                Icons.account_balance,
+                color: Colors.orange,
+              ),
+            ),
+            Expanded(
+              child: Icon(
+                Icons.more_vert,
+                color: Colors.orange,
+              ),
+            )
+          ],
+        ),
+        backgroundColor: Colors.white24,
       ),
       body: Container(
         child: Column(
           children: <Widget>[
             Container(
-              height: 350.0,
+              height: 300.0,
+              width: MediaQuery.of(context).size.width,
+              child: Text(
+                result.toString(),
+                textAlign: TextAlign.right,
+                style: TextStyle(
+                  fontSize: 40.0,
+                  color: Colors.black,
+                ),
+              ),
             ),
             Divider(
               height: 2.0,
@@ -39,9 +85,33 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CalculatorBlackTextKey('7'),
-                  CalculatorBlackTextKey('8'),
-                  CalculatorBlackTextKey('9'),
+                  CalculatorBlackTextKey(
+                    val: '7',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '8',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '9',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
                   CalculatorOrangeTextKey('*'),
                 ],
               ),
@@ -50,9 +120,33 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CalculatorBlackTextKey('4'),
-                  CalculatorBlackTextKey('5'),
-                  CalculatorBlackTextKey('6'),
+                  CalculatorBlackTextKey(
+                    val: '4',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '5',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '6',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
                   CalculatorOrangeTextKey('-'),
                 ],
               ),
@@ -61,9 +155,33 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CalculatorBlackTextKey('1'),
-                  CalculatorBlackTextKey('2'),
-                  CalculatorBlackTextKey('3'),
+                  CalculatorBlackTextKey(
+                    val: '1',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '2',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '3',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
                   CalculatorOrangeTextKey('+'),
                 ],
               ),
@@ -73,8 +191,24 @@ class _HomePageState extends State<HomePage> {
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
                   CalculatorOrangeIconKey(Icons.loop),
-                  CalculatorBlackTextKey('0'),
-                  CalculatorBlackTextKey('.'),
+                  CalculatorBlackTextKey(
+                    val: '0',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorBlackTextKey(
+                    val: '.',
+                    onNumButtonTap: (String v) {
+                      setState(() {
+                        result = num.parse(result.toString() + v);
+                      });
+                      print(result);
+                    },
+                  ),
                   Expanded(
                     child: InkWell(
                       onTap: () {},
@@ -104,3 +238,7 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
+
+//function(setState(){}) main.dart
+//calculatorKeys.dart-> calculation blacktextkey  button.dart()
+//

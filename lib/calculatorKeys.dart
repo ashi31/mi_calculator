@@ -1,20 +1,20 @@
 import 'package:flutter/material.dart';
 
 class CalculatorBlackTextKey extends StatelessWidget {
-  final String t;
-
-  CalculatorBlackTextKey(this.t);
+  final String val;
+  final Function(String) onNumButtonTap;
+  CalculatorBlackTextKey({this.val, this.onNumButtonTap});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: () => onNumButtonTap(val),
         child: Container(
 //      color: Colors.black,
           child: Center(
             child: Text(
-              t,
+              val,
               style: TextStyle(fontSize: 30.0),
             ),
           ),
