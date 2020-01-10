@@ -100,6 +100,7 @@ class _HomePageState extends State<HomePage> {
                         valueDisplayed = '0';
                         result = 0;
                         start = false;
+                        decCount = 0;
                       });
                       print(result);
                     },
@@ -108,6 +109,9 @@ class _HomePageState extends State<HomePage> {
                     val: Icons.backspace,
                     onActionButtonTap: () {
                       setState(() {
+                        if (valueDisplayed[valueDisplayed.length - 1] == '.') {
+                          decCount = 0;
+                        }
                         valueDisplayed = valueDisplayed.substring(
                             0, valueDisplayed.length - 1);
                         result = num.parse(valueDisplayed);
