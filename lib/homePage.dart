@@ -9,6 +9,24 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   num result = 0;
+  String zeroCount = '';
+  int decCount = 0;
+  String valueDisplayed = '0';
+  bool start = false;
+
+  void displayNum(String v) {
+    setState(() {
+      if (result.toString().contains('.')) {
+        valueDisplayed = valueDisplayed + v;
+      } else if (start == true) {
+        valueDisplayed = result.toString() + v;
+      } else {
+        start = true;
+        valueDisplayed = v;
+      }
+      result = num.parse(valueDisplayed);
+    });
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -58,7 +76,8 @@ class _HomePageState extends State<HomePage> {
               height: 300.0,
               width: MediaQuery.of(context).size.width,
               child: Text(
-                result.toString(),
+//                result.toString(),
+                valueDisplayed,
                 textAlign: TextAlign.right,
                 style: TextStyle(
                   fontSize: 40.0,
@@ -74,10 +93,30 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CalculatorOrangeTextKey('C'),
-                  CalculatorOrangeIconKey(Icons.backspace),
-                  CalculatorOrangeTextKey('%'),
-                  CalculatorOrangeTextKey('/'),
+                  CalculatorOrangeTextKey(
+                    val: 'C',
+                    onActionButtonTap: (v) {
+                      setState(() {
+                        valueDisplayed = '0';
+                        result = 0;
+                        start = false;
+                      });
+                      print(result);
+                    },
+                  ),
+                  CalculatorOrangeIconKey(
+                    val: Icons.backspace,
+                    onActionButtonTap: () {
+                      setState(() {
+                        valueDisplayed = valueDisplayed.substring(
+                            0, valueDisplayed.length - 1);
+                        result = num.parse(valueDisplayed);
+                      });
+                      print(result);
+                    },
+                  ),
+//                  CalculatorOrangeTextKey('%'),
+//                  CalculatorOrangeTextKey('/'),
                 ],
               ),
             ),
@@ -88,31 +127,25 @@ class _HomePageState extends State<HomePage> {
                   CalculatorBlackTextKey(
                     val: '7',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '8',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '9',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
-                  CalculatorOrangeTextKey('*'),
+//                  CalculatorOrangeTextKey('*'),
                 ],
               ),
             ),
@@ -123,31 +156,25 @@ class _HomePageState extends State<HomePage> {
                   CalculatorBlackTextKey(
                     val: '4',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '5',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '6',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
-                  CalculatorOrangeTextKey('-'),
+//                  CalculatorOrangeTextKey('-'),
                 ],
               ),
             ),
@@ -158,31 +185,25 @@ class _HomePageState extends State<HomePage> {
                   CalculatorBlackTextKey(
                     val: '1',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '2',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
                     val: '3',
                     onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
+                      displayNum(v);
                       print(result);
                     },
                   ),
-                  CalculatorOrangeTextKey('+'),
+//                  CalculatorOrangeTextKey('+'),
                 ],
               ),
             ),
@@ -190,25 +211,35 @@ class _HomePageState extends State<HomePage> {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: <Widget>[
-                  CalculatorOrangeIconKey(Icons.loop),
+//                  CalculatorOrangeIconKey(Icons.loop),
                   CalculatorBlackTextKey(
                     val: '0',
                     onNumButtonTap: (String v) {
                       setState(() {
-                        result = num.parse(result.toString() + v);
+                        if (result == 0) {
+                          valueDisplayed = '0';
+                        } else if (result.toString().contains('.')) {
+                          valueDisplayed = valueDisplayed + v;
+                        } else {
+                          valueDisplayed = result.toString() + v;
+                          result = num.parse(result.toString() + v);
+                        }
                       });
                       print(result);
                     },
                   ),
                   CalculatorBlackTextKey(
-                    val: '.',
-                    onNumButtonTap: (String v) {
-                      setState(() {
-                        result = num.parse(result.toString() + v);
-                      });
-                      print(result);
-                    },
-                  ),
+                      val: '.',
+                      onNumButtonTap: (String v) {
+                        if (decCount == 0) {
+                          decCount++;
+                          setState(() {
+                            valueDisplayed = result.toString() + v;
+                            result = num.parse(result.toString() + v);
+                          });
+                          print(result);
+                        }
+                      }),
                   Expanded(
                     child: InkWell(
                       onTap: () {},
@@ -238,7 +269,3 @@ class _HomePageState extends State<HomePage> {
     );
   }
 }
-
-//function(setState(){}) main.dart
-//calculatorKeys.dart-> calculation blacktextkey  button.dart()
-//

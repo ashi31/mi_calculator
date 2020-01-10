@@ -25,20 +25,21 @@ class CalculatorBlackTextKey extends StatelessWidget {
 }
 
 class CalculatorOrangeTextKey extends StatelessWidget {
-  final String t;
+  final String val;
+  final Function(String) onActionButtonTap;
 
-  CalculatorOrangeTextKey(this.t);
+  CalculatorOrangeTextKey({this.val, this.onActionButtonTap});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: () => onActionButtonTap(val),
         child: Container(
 //      color: Colors.black,
           child: Center(
             child: Text(
-              t,
+              val,
               style: TextStyle(color: Colors.orange, fontSize: 30.0),
             ),
           ),
@@ -49,20 +50,21 @@ class CalculatorOrangeTextKey extends StatelessWidget {
 }
 
 class CalculatorOrangeIconKey extends StatelessWidget {
-  final IconData t;
+  final IconData val;
+  final Function() onActionButtonTap;
 
-  CalculatorOrangeIconKey(this.t);
+  CalculatorOrangeIconKey({this.val, this.onActionButtonTap});
 
   @override
   Widget build(BuildContext context) {
     return Expanded(
       child: InkWell(
-        onTap: () {},
+        onTap: () => onActionButtonTap(),
         child: Container(
 //                        color: Colors.black,
           child: Center(
               child: Icon(
-            t,
+            val,
             color: Colors.orange,
           )),
         ),
